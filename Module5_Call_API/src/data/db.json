@@ -1,0 +1,22 @@
+{
+  "player": [],
+  "position": [
+    {
+      "id": "1",
+      "name": "Tiền Đạo"
+    },
+    {
+      "id": "2",
+      "name": "Tiền Vệ"
+    },
+    {
+      "id": "3",
+      "name": "Hậu Vệ"
+    },
+    {
+      "id": "4",
+      "name": "Thủ Môn"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

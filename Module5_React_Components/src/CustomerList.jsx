@@ -5,26 +5,23 @@ class CustomerList extends Component {
         super(props);
         this.state = {
             customers: [
-                { id: 1, name: 'Nguyễn Văn A', email: 'a@gmail.com' },
-                { id: 2, name: 'Trần Thị B', email: 'b@gmail.com' },
-                { id: 3, name: 'Lê Văn C', email: 'c@gmail.com' },
+                { id: 1, name: 'Nguyễn Văn An', email: 'an@gmail.com' },
+                { id: 2, name: 'Trần Thị Bưởi', email: 'buoi@gmail.com' },
+                { id: 3, name: 'Lê Văn Chiến', email: 'chien@gmail.com' },
             ],
             showModal: false,
             customerToDelete: null,
         };
     }
 
-    // Mở modal xác nhận
     handleShowModal = (customer) => {
         this.setState({ showModal: true, customerToDelete: customer });
     };
 
-    // Đóng modal
     handleCloseModal = () => {
         this.setState({ showModal: false, customerToDelete: null });
     };
 
-    // Xác nhận xóa
     confirmDelete = () => {
         this.setState((prevState) => ({
             customers: prevState.customers.filter(
