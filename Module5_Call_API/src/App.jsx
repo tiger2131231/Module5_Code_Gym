@@ -8,6 +8,7 @@ import PlayerAdd from "./pages/PlayerAdd.jsx";
 import {Route, Routes, Navigate} from "react-router-dom"; // ✅ FIX
 import Header from "./components/Header.jsx";
 import PlayerList from "./pages/PlayerList.jsx";
+import PlayerEdit from "./pages/PlayerEdit.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/player" element={<PlayerList/>}/>
                 <Route path="/player/add" element={<PlayerAdd/>}/>
+                <Route path="/player/edit/:id" element={<PlayerEdit/>}/>
 
-                {/* optional */}
                 <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
             <ToastContainer/>

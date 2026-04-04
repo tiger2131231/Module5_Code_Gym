@@ -13,8 +13,8 @@ export const getAll = async () => {
     return [];
 };
 
-// GET BY ID
-export const getById = async (id) => {
+// FiND BY ID
+export const findById = async (id) => {
     try {
         const res = await axios.get(`${API}/${id}`);
         return res.data;
@@ -24,8 +24,8 @@ export const getById = async (id) => {
     return null;
 };
 
-// CREATE
-export const create = async (data) => {
+// AddNew
+export const addNew = async (data) => {
     try {
         const res = await axios.post(API, data);
 
@@ -55,7 +55,7 @@ export const update = async (id, data) => {
 };
 
 // DELETE
-export const remove = async (id) => {
+export const deleteById = async (id) => {
     try {
         const res = await axios.delete(`${API}/${id}`);
 

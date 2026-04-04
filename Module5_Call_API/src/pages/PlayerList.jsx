@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import {getAll, remove} from "../Service/PlayerService";
-import { toast } from "react-toastify";
-import ConfirmModal from "./ConfirmModal";
+import { getAll} from "../Service/PlayerService";
+import Delete from "./PlayerDelete";
 
 const PlayerList = () => {
-    const [players, setPlayers] = useState([]);
+    const [playerList, setPlayers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-
-    const [isLoading, setIsLoading] = useState(false);
-
-    const [selectedId, setSelectedId] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-
+    const [deletePlayer,setDeletePlayer] = useState({
+        id:"",
+        name: "",
+        code: "",
+        dob: "",
+        value: "",
+        position:""
+    })
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -24,39 +27,16 @@ const PlayerList = () => {
         };
 
         fetchData();
-    }, [isLoading]); // 🔥 QUAN TRỌNG
+    }, [isLoading]);
 
     // mở modal
-    const handleDelete = (id) => {
-        setSelectedId(id);
-        setShowModal(true);
+    const handleDelete = (player) => {
+        setDeletePlayer(player);
+        setIsShowModal(true);
     };
-
-    // confirm xoá
-    const confirmDelete = async () => {
-        const success = await remove(selectedId);
-
-        if (success) {
-            toast.success("Xóa thành công");
-
-            // 🔥 trigger reload giống Student
-            setIsLoading(prev => !prev);
-
-        } else {
-            toast.error("Xóa thất bại");
-        }
-
-        setShowModal(false);
-    };
-
-    // search
-    const filtered = players.filter(p =>
-        p.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.code?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
-        <div>
+        <>
             <h2>Danh sách cầu thủ</h2>
 
             <Link to="/player/add">Thêm mới</Link>
@@ -68,32 +48,46 @@ const PlayerList = () => {
             />
 
             <table>
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Mã Cầu Thủ</th>
+                    <th>Tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giá trị</th>
+                    <th>Vị trị</th>
+                    <th>Chi tiết</th>
+                    <th>Hành động</th>
+                </tr>
+                </thead>
                 <tbody>
-                {filtered.map(p => (
-                    <tr key={p.id}>
-                        <td>{p.id}</td>
-                        <td>{p.code}</td>
-                        <td>{p.name}</td>
-                        <td>{p.dob}</td>
-                        <td>{p.value}</td>
-                        <td>{p.position?.name}</td>
+                {
+                     playerList && playerList.map((player, i) => (
+                    <tr key={player.id}>
+                        <td>{i+1}</td>
+                        <td>{player.code}</td>
+                        <td>{player.name}</td>
+                        <td>{player.dob}</td>
+                        <td>{player.value}</td>
+                        <td>{player.position?.name}</td>
                         <td>
-                            <Link to={`/edit/${p.id}`}>Edit</Link>
-                            <button onClick={() => handleDelete(p.id)}>
-                                Delete
+                            <Link to={`/player/detail/${player.id}`}>Detail</Link>
+                        </td>
+                        <td>
+                            <Link to={`/player/edit/${player.id}`}>Edit</Link>
+                            <button onClick={() => handleDelete(player)}>Delete
                             </button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
-
-            <ConfirmModal
-                show={showModal}
-                onClose={() => setShowModal(false)}
-                onConfirm={confirmDelete}
+            <Delete isShowModal={isShowModal}
+                    deletePlayer={deletePlayer}
+                    closeModal ={setIsShowModal}
+                    setIsLoading = {setIsLoading}
             />
-        </div>
+        </>
     );
 };
 
