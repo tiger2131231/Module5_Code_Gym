@@ -1,0 +1,76 @@
+:root {
+  --fm-black: #2d2d2d;
+  --fm-light: #f8f9fa;
+  --fm-white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--fm-white);
+  color: #333;
+}
+
+.navbar-fm {
+  background-color: var(--fm-black) !important;
+  color: white !important;
+  padding: 1rem 0;
+}
+
+.navbar-fm .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: white !important;
+}
+
+.navbar-fm .nav-link {
+  color: white !important;
+  margin-left: 1.5rem;
+}
+
+.footer-fm {
+  background-color: #f1f1f1;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+.main-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.add-link {
+  color: #0d6efd;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.filter-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.filter-input {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+.table-fm th {
+  border-bottom: 1px solid #dee2e6;
+  padding: 12px 8px;
+  font-weight: bold;
+}
+
+.table-fm td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+}
